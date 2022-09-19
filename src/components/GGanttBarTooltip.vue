@@ -7,6 +7,7 @@
       <div
         v-if="modelValue"
         class="g-gantt-tooltip"
+        style="z-index: 1000;"
         :style="{
           top: tooltipTop,
           left: tooltipLeft,
@@ -59,12 +60,19 @@ watch(bar, () => {
 }, { deep: true, immediate: true })
 
 const dotColor = computed(() => bar?.value?.ganttBarConfig.style?.background || "cadetblue")
-
+/*
 const tooltipFormats = {
   hour: "HH:mm",
   day: "DD. MMM HH:mm",
   month: "DD. MMMM YYYY"
 }
+*/
+const tooltipFormats = {
+  hour: "HH:mm",
+  day: "MM/DD HH:mm",
+  month: "YYYY/MM/DD"
+}
+
 const { toDayjs } = useDayjsHelper(gGanttChartPropsRefs)
 const { precision, font } = gGanttChartPropsRefs
 const tooltipContent = computed(() => {

@@ -20,7 +20,7 @@ export default function useTimeaxisUnits (
         throw new Error("Precision prop incorrect. Must be one of the following: 'hour', 'day', 'month'")
     }
   })
-
+/*
   const displayFormats = {
     hour: "HH",
     date: "DD.MMM ",
@@ -28,7 +28,14 @@ export default function useTimeaxisUnits (
     month: "MMMM YYYY",
     year: "YYYY"
   }
-
+*/
+  const displayFormats = {
+    hour: "HH",
+    date: "MM/DD ",
+    day: "DD ",
+    month: "MM月",
+    year: "YYYY年"
+  }
   const timeaxisUnits = computed(() => {
     const upperUnits :{label: string, value?: string, width?: string}[] = []
     const lowerUnits :{label: string, value?: string, width?: string}[] = []

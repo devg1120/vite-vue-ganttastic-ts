@@ -11,6 +11,7 @@ export default function useBarDrag (
   const chartEndDayjs = computed(() => toDayjs(chartEnd.value))
 
   const toDayjs = (value: string | GanttBarObject, startOrEnd?: "start" | "end") => {
+//	  console.log(value)
     if (typeof value === "string") {
       return dayjs(value, dateFormat.value, true)
     }
