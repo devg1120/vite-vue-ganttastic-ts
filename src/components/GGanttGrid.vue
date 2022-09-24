@@ -2,11 +2,10 @@
   <div class="g-grid-container">
     <div
       v-for="{label, value, width} in timeaxisUnits.lowerUnits"
-      :key="label"
+      :key="value"
       class="g-grid-line"
       :style="{
         width,
-        background: highlightedUnits.includes(Number(value)) ? colors.hoverHighlight : null
       }"
     />
   </div>

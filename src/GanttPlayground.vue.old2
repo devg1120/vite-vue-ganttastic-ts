@@ -59,28 +59,12 @@ import dayjs from 'dayjs';
 //const chartEnd = ref("15.07.2021 12:00")
 const format = ref("YYYY/MM/DD HH:mm")
 //const chartStart = ref("2021/01/01 12:00")
-const chartStart = ref("2021/06/10 12:00")  //error duplicate
-//const chartStart = ref("2021/07/01 12:00") // ok
+//const chartStart = ref("2021/06/10 12:00")  //error duplicate
+const chartStart = ref("2021/07/01 12:00") // ok
 const chartEnd   = ref("2021/07/15 12:00")
 //let chartStart = ref("2021/05/31 12:00")
 //let  chartEnd   = ref("2021/07/14 12:00")
 
-
- //const element = document.getElementById("circle");
- let element = ""
-
-  let currentAnimation;
-
-  function move(transformStart, transformEnd) {
-    currentAnimation = element.animate(
-      [{ transform: transformStart }, { transform: transformEnd }],
-      {
-        duration: 1000,
-        easing: "linear",
-        fill: "forwards",
-      }
-    );
-  }
 
 const bars1 = ref([
   {
@@ -149,22 +133,42 @@ const shiftLeft = () => {
  //chartEnd   = ref("2021/07/14 12:00")
  //chartStart.value = "2021/05/31 12:00"
  //chartEnd.value   = "2021/07/14 12:00"
-element = document.querySelector("#g-gantt-chart");
+const element = document.querySelector("#g-gantt-chart");
 
+element.animate(
+  [{ transform: "translateX(0)" }, { transform: "translateX(100px)" }],
+  {
+    duration: 1000,
+    easing: "linear",
+  }
+);
+
+/*
+element.animate(
+  {
+    transform: [
+      "translateX(0px) rotate(0deg)", // 開始値
+      "translateX(800px) rotate(360deg)" // 終了値
+    ]
+  },
+  {
+    duration: 3000, // ミリ秒指定
+    iterations: Infinity, // 繰り返し回数
+    direction: "normal", // 繰り返し挙動
+    easing: "ease" // 加減速種類
+  }
+);
+ */
  const start = dayjs(chartStart.value ).subtract(1,"d")
  const end   = dayjs(chartEnd.value ).subtract(1,"d")
  chartStart.value = dayjs(start).format('YYYY/MM/DD HH:mm')
  chartEnd.value   = dayjs(end).format('YYYY/MM/DD HH:mm')
  console.log(chartStart.value)
  console.log(chartEnd.value)
- // move("translateX(100px)", "translateX(0)");
-
  
 }
 
 const shiftRight = () => {
-element = document.querySelector("#g-gantt-chart");
- //move("translateX(0)", "translateX(100px)");
   console.log("shiftRight")
  //chartStart = ref("2021/06/02 12:00")
  //chartEnd   = ref("2021/07/16 12:00")
@@ -174,8 +178,6 @@ element = document.querySelector("#g-gantt-chart");
  chartEnd.value   = dayjs(end).format('YYYY/MM/DD HH:mm')
  console.log(chartStart.value)
  console.log(chartEnd.value)
- //move("translateX(0)", "translateX(100px)");
-
 }
 
 const addBar = () => {

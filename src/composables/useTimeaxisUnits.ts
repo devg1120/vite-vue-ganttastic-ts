@@ -32,7 +32,7 @@ export default function useTimeaxisUnits (
   const displayFormats = {
     hour: "HH",
     date: "MM/DD ",
-    day: "DD ",
+    day: "DD",
     month: "MM月",
     year: "YYYY年"
   }
@@ -75,8 +75,10 @@ export default function useTimeaxisUnits (
         width = `${currentUnit.endOf(lowerUnit).diff(currentUnit.startOf(lowerUnit), "minutes", true) / totalMinutes * 100}%`
       }
       lowerUnits.push({
+        //key: currentUnit.format('YYYYMMDD'),  //GS
         label: currentUnit.format(displayFormats[lowerUnit]),
-        value: String(currentUnit[lowerUnit === "day" ? "date" : lowerUnit]()),
+        //value: String(currentUnit[lowerUnit === "day" ? "date" : lowerUnit]()),
+        value: currentUnit.format('MMDD'),  //GS
         width
       })
       const prevUpperUnitUnit = currentUnit

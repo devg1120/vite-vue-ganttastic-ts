@@ -24,7 +24,7 @@
     <div class="g-timeunits-container">
       <div
         v-for="({ label, value, width }, index) in timeaxisUnits.lowerUnits"
-        :key="label"
+        :key="value"
         class="g-timeunit"
         :style="{
           background: index % 2 === 0 ? colors.ternary : colors.quartenary,
