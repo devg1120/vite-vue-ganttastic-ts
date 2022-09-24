@@ -31,6 +31,7 @@
 
     <g-gantt-grid
       v-if="grid"
+      :highlighted-units="highlightedUnits"
     />
 
     <div id="g-gantt-rows-container">

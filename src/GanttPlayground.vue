@@ -185,8 +185,8 @@ const addBar = () => {
   const bar = {
     //beginDate: "26.02.2021 00:00",
     //endDate: "26.03.2021 02:00",
-    beginDate: "2021/02/26 00:00",
-    endDate: "2021/03/26 02:00",
+    beginDate: "2021/06/30 00:00",
+    endDate: "2021/07/10 02:00",
     ganttBarConfig: {
       id: "test1",
       hasHandles: true,

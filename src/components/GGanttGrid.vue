@@ -6,6 +6,8 @@
       class="g-grid-line"
       :style="{
         width,
+        background: highlightedUnits.includes(Number(value)) ? colors.hoverHighlight : null
+
       }"
     />
   </div>
