@@ -70,6 +70,7 @@ const prepareForDrag = () => {
 }
 const onMouseEvent = (e: MouseEvent) => {
   e.preventDefault()
+  e.stopPropagation(); //GS
   if (e.type === "mousedown") {
     prepareForDrag()
   }

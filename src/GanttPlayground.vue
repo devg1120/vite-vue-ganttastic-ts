@@ -18,6 +18,9 @@
     @drag-bar="onDragBar($event.bar, $event.e)"
     @dragend-bar="onDragendBar($event.bar, $event.e, $event.movedBars)"
     @contextmenu-bar="onContextmenuBar($event.bar, $event.e, $event.datetime)"
+      @mousedown="touchStart($event)"
+      @mousemove="touchMove($event)"
+      @mouseup="touchEnd($event)"
   >
     <g-gantt-row
       label="My row 1"
@@ -149,7 +152,7 @@ const shiftLeft = () => {
  //chartEnd   = ref("2021/07/14 12:00")
  //chartStart.value = "2021/05/31 12:00"
  //chartEnd.value   = "2021/07/14 12:00"
-element = document.querySelector("#g-gantt-chart");
+ element = document.querySelector("#g-gantt-chart");
 
  const start = dayjs(chartStart.value ).subtract(1,"d")
  const end   = dayjs(chartEnd.value ).subtract(1,"d")
@@ -163,7 +166,7 @@ element = document.querySelector("#g-gantt-chart");
 }
 
 const shiftRight = () => {
-element = document.querySelector("#g-gantt-chart");
+ element = document.querySelector("#g-gantt-chart");
  //move("translateX(0)", "translateX(100px)");
   console.log("shiftRight")
  //chartStart = ref("2021/06/02 12:00")
@@ -242,4 +245,33 @@ const onDragendBar = (bar: GanttBarObject, e:MouseEvent, movedBars?: Map<GanttBa
 const onContextmenuBar = (bar: GanttBarObject, e:MouseEvent, datetime?: string) => {
   console.log("contextmenu-bar", bar, e, datetime)
 }
+
+let drag:boolean = false;
+let drag_offsetX:int = 0;
+
+const touchStart = (e:Event) => {
+  drag = true
+  drag_offsetX = e.offsetX
+
+  //console.log("touchStart")
+  //console.log(e)
+}
+const touchMove = (e:Event) => {
+  if (drag) {
+    //let z = e.offsetX - drag_offsetX 
+    let z = (drag_offsetX  - e.offsetX) 
+    const start = dayjs(chartStart.value ).add(z,"h")
+    const end   = dayjs(chartEnd.value ).add(z,"h")
+    chartStart.value = dayjs(start).format('YYYY/MM/DD HH:mm')
+    chartEnd.value   = dayjs(end).format('YYYY/MM/DD HH:mm')
+    drag_offsetX = e.offsetX
+  }
+}
+
+const touchEnd = (e:Event) => {
+  drag = false
+  //console.log("touchEnd")
+  //console.log(e)
+}
+
 </script>
