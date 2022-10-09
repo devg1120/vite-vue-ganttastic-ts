@@ -1,12 +1,12 @@
 <template>
   <div class="g-grid-container">
     <div
-      v-for="{label, value, weekday, holiday, width} in timeaxisUnits.weekUnits"
+      v-for="{label, value, width} in timeaxisUnits.lowerUnits"
       :key="value"
       class="g-grid-line"
       :style="{
         width,
-        background: weekday === 0 || weekday === 6 || holiday ? colors.holiday :  null
+        background: highlightedUnits.includes(Number(value)) ? colors.hoverHighlight : null
 
       }"
     />

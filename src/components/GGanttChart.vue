@@ -85,6 +85,7 @@ const props = withDefaults(defineProps<GGanttChartProps>(), {
   width: "100%",
   hideTimeaxis: false,
   colorScheme: "default",
+  //colorScheme: "dark",
   grid: false,
   pushOnOverlap: false,
   noOverlap: false,

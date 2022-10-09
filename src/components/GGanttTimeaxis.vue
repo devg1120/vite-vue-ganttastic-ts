@@ -55,7 +55,7 @@
         :key="value"
         class="g-timeunit"
         :style="{
-          background: weekday === 0 || weekday === 6 || holiday ? colors.tenary : colors.quartenary,
+          background: weekday === 0 || weekday === 6 || holiday ? colors.holiday : colors.quartenary,
           color: colors.text,
           flexDirection: precision === 'hour' ? 'column' : 'row',
           alignItems: precision === 'hour' ? '' : 'center',
@@ -130,6 +130,7 @@ const { timeaxisUnits } = useTimeaxisUnits(gGanttChartPropsRefs)
 
   .g-upper-timeunit {
     display: flex;
+    white-space: nowrap;
     height: 100%;
     justify-content: center;
     align-items: center;
