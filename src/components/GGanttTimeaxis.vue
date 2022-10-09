@@ -23,11 +23,11 @@
 
     <div class="g-timeunits-container">
       <div
-        v-for="({ label, value, width ,weekday}, index) in timeaxisUnits.lowerUnits"
+        v-for="({ label, value, width ,weekday, holiday}, index) in timeaxisUnits.lowerUnits"
         :key="value"
         class="g-timeunit"
         :style="{
-          background: weekday === 0 || weekday === 6 ? colors.tenary : colors.quartenary,
+          background: weekday === 0 || weekday === 6 || holiday ? colors.tenary : colors.quartenary,
           color: colors.text,
           flexDirection: precision === 'hour' ? 'column' : 'row',
           alignItems: precision === 'hour' ? '' : 'center',
@@ -51,11 +51,11 @@
 
     <div class="g-timeunits-container">
       <div
-        v-for="({ label, value, weekday, width }, index) in timeaxisUnits.weekUnits"
+        v-for="({ label, value, weekday, holiday, width }, index) in timeaxisUnits.weekUnits"
         :key="value"
         class="g-timeunit"
         :style="{
-          background: weekday === 0 || weekday === 6 ? colors.tenary : colors.quartenary,
+          background: weekday === 0 || weekday === 6 || holiday ? colors.tenary : colors.quartenary,
           color: colors.text,
           flexDirection: precision === 'hour' ? 'column' : 'row',
           alignItems: precision === 'hour' ? '' : 'center',

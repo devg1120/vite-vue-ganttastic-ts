@@ -1,6 +1,7 @@
 import { GGanttChartPropsRefs } from "../models/models"
 import useDayjsHelper from "./useDayjsHelper"
 import { computed } from "vue"
+import * as hd from './holidays.js'
 
 export default function useTimeaxisUnits (
   gGanttChartPropsRefs: GGanttChartPropsRefs
@@ -57,6 +58,20 @@ export default function useTimeaxisUnits (
          '土'
     ],
 }
+
+function isHoliday(date) {
+    //console.log("isHolidays");
+    //console.log(hd.holidays);
+    
+    if (date instanceof Date) {
+      date = format(date);
+    }
+    if (hd.holidays[date]) {
+    //if (holidays.hasOwnProperty(date) ) {
+      return true;
+    }
+    return false;
+};
   const timeaxisUnits = computed(() => {
     const upperUnits :{label: string, value?: string, width?: string}[] = []
     const lowerUnits :{label: string, value?: string, width?: string}[] = []
@@ -98,13 +113,17 @@ export default function useTimeaxisUnits (
         width = `${currentUnit.endOf(lowerUnit).diff(currentUnit.startOf(lowerUnit), "minutes", true) / totalMinutes * 100}%`
       }
       //console.dir(currentUnit.day())
-      console.dir(weekday_names['jp'][currentUnit.day()])
+      //console.dir(weekday_names['jp'][currentUnit.day()])
+      //console.log(currentUnit.format("YYYY-MM-DD"))
+      const holiday = isHoliday(currentUnit.format("YYYY-MM-DD"))
+      //console.log(holiday)
       lowerUnits.push({
         //key: currentUnit.format('YYYYMMDD'),  //GS
         label: currentUnit.format(displayFormats[lowerUnit]),
         //value: String(currentUnit[lowerUnit === "day" ? "date" : lowerUnit]()),
         value: currentUnit.format('MMDD'),  //GS
         weekday: currentUnit.day(), //GS
+	holiday: holiday, //GS
         width
       })
       weekUnits.push({
@@ -115,6 +134,7 @@ export default function useTimeaxisUnits (
         //value: String(currentUnit[lowerUnit === "day" ? "date" : lowerUnit]()),
         value: currentUnit.format('MMDD'),  //GS
         weekday: currentUnit.day(), //GS
+	holiday: holiday, //GS
         width
       })
       const prevUpperUnitUnit = currentUnit
