@@ -36,9 +36,32 @@ export default function useTimeaxisUnits (
     month: "MM月",
     year: "YYYY年"
   }
+
+  const weekday_names = {
+    en: [
+         'Sun',
+         'Mon',
+         'Tue',
+         'Wed',
+         'Thu',
+         'Fri',
+         'Sat'
+    ],
+    jp: [
+         '日',
+         '月',
+         '火',
+         '水',
+         '木',
+         '金',
+         '土'
+    ],
+}
   const timeaxisUnits = computed(() => {
     const upperUnits :{label: string, value?: string, width?: string}[] = []
     const lowerUnits :{label: string, value?: string, width?: string}[] = []
+    const weekUnits  :{label: string, value?: string, width?: string}[] = []
+
     const upperUnit = upperPrecision.value === "day" ? "date" : upperPrecision.value
     const lowerUnit = precision.value
     let currentUnit = chartStartDayjs.value.startOf(lowerUnit)
@@ -74,11 +97,24 @@ export default function useTimeaxisUnits (
       } else {
         width = `${currentUnit.endOf(lowerUnit).diff(currentUnit.startOf(lowerUnit), "minutes", true) / totalMinutes * 100}%`
       }
+      //console.dir(currentUnit.day())
+      console.dir(weekday_names['jp'][currentUnit.day()])
       lowerUnits.push({
         //key: currentUnit.format('YYYYMMDD'),  //GS
         label: currentUnit.format(displayFormats[lowerUnit]),
         //value: String(currentUnit[lowerUnit === "day" ? "date" : lowerUnit]()),
         value: currentUnit.format('MMDD'),  //GS
+        weekday: currentUnit.day(), //GS
+        width
+      })
+      weekUnits.push({
+        //key: currentUnit.format('YYYYMMDD'),  //GS
+        //label: currentUnit.format(displayFormats[lowerUnit]),
+	//label: "Z",
+        label: weekday_names['jp'][currentUnit.day()],
+        //value: String(currentUnit[lowerUnit === "day" ? "date" : lowerUnit]()),
+        value: currentUnit.format('MMDD'),  //GS
+        weekday: currentUnit.day(), //GS
         width
       })
       const prevUpperUnitUnit = currentUnit
@@ -100,7 +136,7 @@ export default function useTimeaxisUnits (
       })
     }
 
-    return { upperUnits, lowerUnits }
+    return { upperUnits, lowerUnits, weekUnits}
   })
 
   return {
