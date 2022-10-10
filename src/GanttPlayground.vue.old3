@@ -22,6 +22,7 @@
       @mousemove="touchMove($event)"
       @mouseup="touchEnd($event)"
   >
+<!--
     <g-gantt-row
       label="My row 1"
       :bars="bars1"
@@ -32,6 +33,16 @@
       highlight-on-hover
       :bars="bars2"
     />
+-->
+
+    <g-gantt-row
+          v-for="{label, bars} in task_list_"
+              :label="label"
+              highlight-on-hover
+              :bars="bars"
+
+    />
+
   </g-gantt-chart>
 
   <button @click="addBar()">
@@ -84,11 +95,9 @@ const chartEnd   = ref("2021/07/15 12:00")
       }
     );
   }
-
+/*
 const bars1 = ref([
   {
-    //beginDate: "24.04.2021 13:00",
-    //endDate: "25.05.2021 19:00",
     beginDate: "2021/04/24 13:00",
     endDate: "2021/05/25 19:00",
     ganttBarConfig: {
@@ -101,8 +110,6 @@ const bars1 = ref([
 
 const bars2 = ref([
   {
-    //beginDate: "24.04.2021 13:00",
-    //endDate: "25.05.2021 19:00",
     beginDate: "2021/04/24 13:00",
     endDate: "2021/05/25 19:00",
     ganttBarConfig: {
@@ -115,8 +122,6 @@ const bars2 = ref([
     }
   },
   {
-    //beginDate: "01.01.2021 00:00",
-    //endDate: "01.03.2021 00:00",
     beginDate: "2021/01/01 00:00",
     endDate: "2021/04/01 00:00",
     ganttBarConfig: {
@@ -129,8 +134,6 @@ const bars2 = ref([
     }
   },
   {
-    //beginDate: "15.06.2021 00:00",
-    //endDate: "10.07.2021 00:00",
     beginDate: "2021/06/15 00:00",
     endDate: "2021/07/10 00:00",
     ganttBarConfig: {
@@ -144,7 +147,95 @@ const bars2 = ref([
       }
     }
   }
-])
+]);
+*/
+
+const bars1_ = [
+  {
+    beginDate: "2021/04/24 13:00",
+    endDate: "2021/05/25 19:00",
+    ganttBarConfig: {
+      id: "8621987329",
+      label: "I'm in a bundle",
+      bundle: "bundle2"
+    }
+  }
+]
+
+const bars2_ = [
+  {
+    beginDate: "2021/04/24 13:00",
+    endDate: "2021/05/25 19:00",
+    ganttBarConfig: {
+      id: "1592311887",
+      label: "I'm in a bundle",
+      bundle: "bundle2",
+      style: {
+        background: "magenta"
+      }
+    }
+  },
+  {
+    beginDate: "2021/01/01 00:00",
+    endDate: "2021/04/01 00:00",
+    ganttBarConfig: {
+      id: "7716981641",
+      label: "Lorem ipsum dolor",
+      hasHandles: true,
+      style: {
+        background: "#b74b52"
+      }
+    }
+  },
+  {
+    beginDate: "2021/06/15 00:00",
+    endDate: "2021/07/10 00:00",
+    ganttBarConfig: {
+      id: "9716981641",
+      label: "Oh hey",
+      style: {
+        background: "#69e064",
+        borderRadius: "15px",
+        color: "blue",
+        fontSize: "10px"
+      }
+    }
+  }
+];
+
+const bars3_ = [
+  {
+    beginDate: "2021/06/25 13:00",
+    endDate: "2021/07/01 19:00",
+    ganttBarConfig: {
+      id: "1592311899",
+      label: "I'm in a TEST",
+      style: {
+        background: "red"
+      }
+    }
+  }
+];
+
+let task_list:{ [key: string]: any; }  = new Array()
+let task_list_ = ref(task_list)
+task_list.push( {
+    label : "My row 01",
+    bars  : bars1_
+}
+);
+
+task_list.push( {
+    label : "My row 02",
+    bars  : bars2_
+}
+);
+
+task_list.push( {
+    label : "My row 03",
+    bars  : bars3_
+}
+);
 
 const shiftLeft = () => {
   console.log("shiftLeft")
@@ -182,9 +273,9 @@ const shiftRight = () => {
 }
 
 const addBar = () => {
-  if (bars1.value.some(bar => bar.ganttBarConfig.id === "test1")) {
-    return
-  }
+  //if (bars1.value.some(bar => bar.ganttBarConfig.id === "test1")) {
+  //  return
+  //}
   const bar = {
     //beginDate: "26.02.2021 00:00",
     //endDate: "26.03.2021 02:00",
@@ -200,7 +291,8 @@ const addBar = () => {
       }
     }
   }
-  bars1.value.push(bar)
+  //bars1.value.push(bar)
+  task_list_.value[0].bars.push(bar)
 }
 
 const deleteBar = () => {

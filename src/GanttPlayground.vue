@@ -67,6 +67,9 @@ import GGanttRow from "./components/GGanttRow.vue"
 import GGanttChart from "./components/GGanttChart.vue"
 import { GanttBarObject } from "./models/models"
 import dayjs from 'dayjs';
+import { objData } from "./jsondata.js"
+
+console.log(objData);
 
 //const format = ref("DD.MM.YYYY HH:mm")
 //const chartStart = ref("01.01.2021 12:00")
@@ -79,7 +82,7 @@ const chartEnd   = ref("2021/07/15 12:00")
 //let chartStart = ref("2021/05/31 12:00")
 //let  chartEnd   = ref("2021/07/14 12:00")
 
-
+/*
  //const element = document.getElementById("circle");
  let element = ""
 
@@ -95,11 +98,10 @@ const chartEnd   = ref("2021/07/15 12:00")
       }
     );
   }
-
+  */
+/*
 const bars1 = ref([
   {
-    //beginDate: "24.04.2021 13:00",
-    //endDate: "25.05.2021 19:00",
     beginDate: "2021/04/24 13:00",
     endDate: "2021/05/25 19:00",
     ganttBarConfig: {
@@ -112,8 +114,6 @@ const bars1 = ref([
 
 const bars2 = ref([
   {
-    //beginDate: "24.04.2021 13:00",
-    //endDate: "25.05.2021 19:00",
     beginDate: "2021/04/24 13:00",
     endDate: "2021/05/25 19:00",
     ganttBarConfig: {
@@ -126,8 +126,6 @@ const bars2 = ref([
     }
   },
   {
-    //beginDate: "01.01.2021 00:00",
-    //endDate: "01.03.2021 00:00",
     beginDate: "2021/01/01 00:00",
     endDate: "2021/04/01 00:00",
     ganttBarConfig: {
@@ -140,8 +138,6 @@ const bars2 = ref([
     }
   },
   {
-    //beginDate: "15.06.2021 00:00",
-    //endDate: "10.07.2021 00:00",
     beginDate: "2021/06/15 00:00",
     endDate: "2021/07/10 00:00",
     ganttBarConfig: {
@@ -156,6 +152,7 @@ const bars2 = ref([
     }
   }
 ]);
+*/
 
 const bars1_ = [
   {
@@ -250,7 +247,7 @@ const shiftLeft = () => {
  //chartEnd   = ref("2021/07/14 12:00")
  //chartStart.value = "2021/05/31 12:00"
  //chartEnd.value   = "2021/07/14 12:00"
- element = document.querySelector("#g-gantt-chart");
+ //element = document.querySelector("#g-gantt-chart");
 
  const start = dayjs(chartStart.value ).subtract(1,"d")
  const end   = dayjs(chartEnd.value ).subtract(1,"d")
@@ -264,7 +261,7 @@ const shiftLeft = () => {
 }
 
 const shiftRight = () => {
- element = document.querySelector("#g-gantt-chart");
+ //element = document.querySelector("#g-gantt-chart");
  //move("translateX(0)", "translateX(100px)");
   console.log("shiftRight")
  //chartStart = ref("2021/06/02 12:00")
