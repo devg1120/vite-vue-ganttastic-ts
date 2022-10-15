@@ -67,8 +67,7 @@ import GGanttRow from "./components/GGanttRow.vue"
 import GGanttChart from "./components/GGanttChart.vue"
 import { GanttBarObject } from "./models/models"
 import dayjs from 'dayjs';
-//import { objData } from "./jsondata.js"
-import { objData } from "./gendata/jsondata.js"
+import { objData } from "./jsondata.js"
 
 console.log(objData);
 
@@ -224,12 +223,6 @@ const bars3_ = [
 
 let task_list:{ [key: string]: any; }  = new Array()
 let task_list_ = ref(task_list)
-
-
-objData.forEach((elem, index) => {
-    console.log(elem);
-    task_list.push(elem)
-});
 task_list.push( {
     label : "My row 01",
     bars  : bars1_
