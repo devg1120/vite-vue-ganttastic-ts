@@ -36,7 +36,7 @@
 -->
 
     <g-gantt-row
-          v-for="{label, bars} in task_list_.slice(row_index_start, row_index_end)"
+          v-for="{label, bars} in task_list_"
               :label="label"
               highlight-on-hover
               :bars="bars"
@@ -57,12 +57,6 @@
   </button>
   <button @click="shiftRight()">
    →
-  </button>
-  <button @click="shiftUp()">
-   ↑
-  </button>
-  <button @click="shiftDown()">
-   ↓
   </button>
 
 </template>
@@ -89,10 +83,6 @@ const chartEnd   = ref("2021/07/15 12:00")
 //let chartStart = ref("2021/05/31 12:00")
 //let  chartEnd   = ref("2021/07/14 12:00")
 
-let _start = 4
-let _end   = 10
-const row_index_start = ref(_start)
-const row_index_end = ref(_end)
 /*
  //const element = document.getElementById("circle");
  let element = ""
@@ -291,15 +281,6 @@ const shiftRight = () => {
  console.log(chartEnd.value)
  //move("translateX(0)", "translateX(100px)");
 
-}
-
-const shiftUp = () => {
-     row_index_start.value -= 1
-     row_index_end.value -= 1
-}
-const shiftDown = () => {
-     row_index_start.value += 1
-     row_index_end.value += 1
 }
 
 const addBar = () => {
