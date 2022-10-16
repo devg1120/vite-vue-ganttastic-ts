@@ -21,6 +21,7 @@
       @mousedown="touchStart($event)"
       @mousemove="touchMove($event)"
       @mouseup="touchEnd($event)"
+      @wheel="mousewheel($event)"
   >
 <!--
     <g-gantt-row
@@ -393,6 +394,15 @@ const touchMove = (e:Event) => {
 const touchEnd = (e:Event) => {
   drag = false
   //console.log("touchEnd")
+  //console.log(e)
+}
+const mousewheel = (e:Event) => {
+  e.preventDefault();
+  //console.log("mousewheel")
+  let d = e.deltaY * 0.01;
+  row_index_start.value += d
+  row_index_end.value += d
+
   //console.log(e)
 }
 
